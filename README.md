@@ -3,7 +3,9 @@
 ## Integrantes
 
 Sergio Rios 2019007977
+
 Kevin Guzman Navarro 2017238886
+
 Jose Ignacio Calderon Diaz 2019031750
 
 ## Investigacion
