@@ -22,3 +22,32 @@ En Linux, se puede utilizar el comando `echo` para escribir en un GPIO específi
 echo 1 > /sys/class/gpio/gpio2/value
 ``` 
 
+## Uso de la libreria GPIO
+
+prerequisitos:
+
+- gcc
+- make
+
+Pasos para compilar el programa:
+
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/Apollo13-0/proyecto1_empotrados.git
+cd proyecto1_empotrados
+```
+
+2. Compilar el programa:
+```bash
+make
+``` 
+
+3. Ejecutar el programa:
+```bash
+./bin/test_gpio
+```
+
+4. Limpiar el proyecto:
+```bash
+make clean
+```
