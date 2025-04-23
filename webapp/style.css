@@ -1,0 +1,72 @@
+body {
+    font-family: sans-serif;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  section {
+    margin-bottom: 30px;
+  }
+  
+  .device {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .device span {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 1em;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-on {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .btn-off {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-left: 10px;
+    border: 2px solid #ccc;
+  }
+  
+  .indicator.on {
+    background-color: red;
+  }
+  
+  .indicator.off {
+    background-color: green;
+  }
+  
+  img {
+    margin-top: 10px;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
