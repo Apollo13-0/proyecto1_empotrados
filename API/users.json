@@ -1,0 +1,10 @@
+{
+  "nacho": {
+    "salt": "f58373d3eb17642f3023b9ae82a3de64",
+    "hash": "9d16f682b14f382950ffd9702e47545da31cf820ff2ed854b98e2601faccbd00"
+  },
+  "Pato Carlos": {
+    "salt": "858a018681d1636eabc450f074be1266",
+    "hash": "3f8adfd1f99e9414bd36c24f601549512413a0e8cb7abc52d57b13e9c14f33a1"
+  }
+}
