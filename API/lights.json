@@ -1,7 +1,7 @@
 {
-  "Luz1": true,
-  "Luz2": false,
-  "Luz3": false,
-  "Luz4": false,
-  "Luz5": false
+  "0": false,
+  "1": false,
+  "2": false,
+  "3": false,
+  "4": false
 }

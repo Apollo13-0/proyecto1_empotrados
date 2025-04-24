@@ -1,6 +1,6 @@
 {
-  "puerta1": true,
-  "puerta2": false,
-  "puerta3": false,
-  "puerta4": false
+  "0": false,
+  "1": false,
+  "2": false,
+  "3": true
 }

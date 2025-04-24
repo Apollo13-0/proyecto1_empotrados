@@ -2,10 +2,11 @@ const App = () => {
   const luces = [0, 1, 2, 3, 4];
   const puertas = [0, 1, 2, 3];
   const [foto, setFoto] = React.useState(null);
-  const [estadoPuertas, setEstadoPuertas] = React.useState([false, false, false, false]);
+  const [estadoPuertas, setEstadoPuertas] = React.useState([true, true, true, true]);
+  const URL = 'http://localhost:3000'; 
 
   const cambiarLuz = (id, estado) => {
-    fetch(`/lights/${id}`, {
+    fetch(`${URL}/lights/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -13,51 +14,64 @@ const App = () => {
       body: JSON.stringify({ state: estado })
     });
   };
-  
+
   const tomarFoto = () => {
-    // Primero tomar la foto
-    fetch('/picture')
-      .then(() => {
-        // Luego obtener la imagen
-        return fetch('/last-picture');
+    fetch(`${URL}/picture`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al tomar la foto');
+        }
+        return fetch(`${URL}/last-picture`);
       })
-      .then(res => res.blob())
-      .then(blob => setFoto(URL.createObjectURL(blob)));
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('No se pudo obtener la imagen');
+        }
+        return res.blob();
+      })
+      .then(blob => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const base64data = reader.result;
+          setFoto(base64data); // base64 como fuente de imagen
+        };
+        reader.readAsDataURL(blob); // leer imagen como base64
+      })
+      .catch(error => {
+        console.error('Error en tomarFoto:', error);
+      });
   };
 
+
   const cambiarPuerta = (id) => {
-
+    console.log('Cambiando puerta:', id);
     const nuevaEstado = [...estadoPuertas];
-    nuevaEstado[id] = !nuevaEstado[id];
+    const nuevoValor = !estadoPuertas[id];
 
-    fetch(`/doors/${id}`, {
+    fetch(`${URL}/doors/${id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ state: nuevaEstado[id] })
-    });
+      body: JSON.stringify({ state: nuevoValor })
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Error al actualizar puerta');
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log('Respuesta del servidor:', data);
+        if (data.success) {
 
-    setEstadoPuertas(nuevaEstado);
-
-  };
-
-  
-  // const cambiarLuz = (id, estado) => {
-  //   fetch(`/api/luces/${id}/${estado}`, { method: 'POST' });
-  // };
-
-  // const tomarFoto = () => {
-  //   fetch('/picture')
-  //     .then(res => res.blob())
-  //     .then(blob => setFoto(URL.createObjectURL(blob)));
-  // };
-
-  const togglePuerta = (id) => {
-    // Esto es solo simulado, en tu backend real vendría del API
-    const nuevaEstado = [...estadoPuertas];
-    nuevaEstado[id] = !nuevaEstado[id];
-    setEstadoPuertas(nuevaEstado);
+          nuevaEstado[id] = nuevoValor;
+          setEstadoPuertas(data.doors);
+        }
+      })
+      .catch(err => {
+        console.error('Error en fetch:', err);
+      });
   };
 
   return (
@@ -70,8 +84,8 @@ const App = () => {
           <div className="device" key={id}>
             <span>Luz {id + 1}</span>
             <div>
-              <button className="btn-on" onClick={() => cambiarLuz(id, 'on')}>Encender</button>
-              <button className="btn-off" onClick={() => cambiarLuz(id, 'off')}>Apagar</button>
+              <button className="btn-on" onClick={() => cambiarLuz(id, true)}>Encender</button>
+              <button className="btn-off" onClick={() => cambiarLuz(id, false)}>Apagar</button>
             </div>
           </div>
         ))}

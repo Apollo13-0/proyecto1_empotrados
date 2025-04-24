@@ -21,6 +21,7 @@ function saveState(file, data) {
 
 // Lights
 function getLights() {
+  console.log('Loading lights');
   return loadState(LIGHTS_FILE, {
     Luz1: false,
     Luz2: false,
@@ -35,11 +36,13 @@ function updateLight(name, state) {
   if (lights[name] === undefined) return null;
   lights[name] = state;
   saveState(LIGHTS_FILE, lights);
+  console.log('Updated lights:', lights);
   return lights;
 }
 
 // Doors
 function getDoors() {
+  console.log('Loading doors');
   return loadState(DOORS_FILE, {
     puerta1: false,
     puerta2: false,
@@ -49,6 +52,7 @@ function getDoors() {
 }
 
 function updateDoor(name, state) {
+  console.log('Updating door:', name, state);
   const doors = getDoors();
   if (doors[name] === undefined) return null;
   doors[name] = state;
