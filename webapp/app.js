@@ -5,14 +5,53 @@ const App = () => {
   const [estadoPuertas, setEstadoPuertas] = React.useState([false, false, false, false]);
 
   const cambiarLuz = (id, estado) => {
-    fetch(`/api/luces/${id}/${estado}`, { method: 'POST' });
+    fetch(`/lights/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ state: estado })
+    });
   };
-
+  
   const tomarFoto = () => {
-    fetch('/api/foto')
+    // Primero tomar la foto
+    fetch('/picture')
+      .then(() => {
+        // Luego obtener la imagen
+        return fetch('/last-picture');
+      })
       .then(res => res.blob())
       .then(blob => setFoto(URL.createObjectURL(blob)));
   };
+
+  const cambiarPuerta = (id) => {
+
+    const nuevaEstado = [...estadoPuertas];
+    nuevaEstado[id] = !nuevaEstado[id];
+
+    fetch(`/doors/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ state: nuevaEstado[id] })
+    });
+
+    setEstadoPuertas(nuevaEstado);
+
+  };
+
+  
+  // const cambiarLuz = (id, estado) => {
+  //   fetch(`/api/luces/${id}/${estado}`, { method: 'POST' });
+  // };
+
+  // const tomarFoto = () => {
+  //   fetch('/picture')
+  //     .then(res => res.blob())
+  //     .then(blob => setFoto(URL.createObjectURL(blob)));
+  // };
 
   const togglePuerta = (id) => {
     // Esto es solo simulado, en tu backend real vendría del API
@@ -44,7 +83,7 @@ const App = () => {
           <div className="device" key={id}>
             <span>Puerta {id + 1}</span>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <button onClick={() => togglePuerta(id)}>Simular apertura</button>
+              <button onClick={() => cambiarPuerta(id)}>Simular apertura</button>
               <div className={`indicator ${estadoPuertas[id] ? 'on' : 'off'}`}></div>
             </div>
           </div>
