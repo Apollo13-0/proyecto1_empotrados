@@ -66,7 +66,7 @@ def save_state(file, data):
 # Lights & doors
 def update_light(name, state):
     lights = load_state(LIGHTS_FILE, {
-        "Luz1": False, "Luz2": False, "Luz3": False, "Luz4": False, "Luz5": False
+        "0": False, "1": False, "2": False, "3": False, "4": False
     })
     if name not in lights:
         return None
@@ -76,7 +76,7 @@ def update_light(name, state):
 
 def update_door(name, state):
     doors = load_state(DOORS_FILE, {
-        "puerta1": False, "puerta2": False, "puerta3": False, "puerta4": False
+        "0": False, "1": False, "2": False, "3": False
     })
     if name not in doors:
         return None
