@@ -6,5 +6,9 @@
   "Pato Carlos": {
     "salt": "858a018681d1636eabc450f074be1266",
     "hash": "3f8adfd1f99e9414bd36c24f601549512413a0e8cb7abc52d57b13e9c14f33a1"
+  },
+  "juan": {
+    "salt": "1f54e014953d4a44a64975c721053eda",
+    "hash": "09fb80e72d600feea4f8a814d8fd0fbbf3c8909d67e07ebd3066e8946d266c88"
   }
 }
