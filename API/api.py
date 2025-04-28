@@ -5,8 +5,11 @@ import json
 import hashlib
 import uuid
 import subprocess
+from flask_cors import CORS
 
 import ctypes
+app = Flask(__name__)
+CORS(app)
 
 gpio = ctypes.CDLL('./libgpio.so')
 gpio.pinMode.argtypes = [ctypes.c_int, ctypes.c_int]
@@ -36,7 +39,9 @@ def ensure_file(path, default):
 def load_users():
     ensure_file(USERS_FILE, {})
     with open(USERS_FILE, 'r') as f:
-        return json.load(f)
+        content = f.read()
+        return json.loads(content)
+
 
 def save_users(users):
     with open(USERS_FILE, 'w') as f:

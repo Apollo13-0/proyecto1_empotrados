@@ -5,4 +5,5 @@ clean:
 	rm -f *.zip
 
 zip:
-	zip -r webapp.zip index.html app.js style.css
+	zip -r webapp.zip index.html app.js Login.js SmartHomeApp.js style.css
+
