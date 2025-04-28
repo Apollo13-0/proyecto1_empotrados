@@ -4,8 +4,10 @@ import json
 import hashlib
 import uuid
 import subprocess
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 USERS_FILE = 'users.json'
 LIGHTS_FILE = 'lights.json'
@@ -22,7 +24,9 @@ def ensure_file(path, default):
 def load_users():
     ensure_file(USERS_FILE, {})
     with open(USERS_FILE, 'r') as f:
-        return json.load(f)
+        content = f.read()
+        return json.loads(content)
+
 
 def save_users(users):
     with open(USERS_FILE, 'w') as f:
