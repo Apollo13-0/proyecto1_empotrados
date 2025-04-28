@@ -1,12 +1,26 @@
 from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS
 import os
 import json
 import hashlib
 import uuid
 import subprocess
 
-app = Flask(__name__)
+import ctypes
 
+gpio = ctypes.CDLL('./libgpio.so')
+gpio.pinMode.argtypes = [ctypes.c_int, ctypes.c_int]
+gpio.digitalWrite.argtypes = [ctypes.c_int, ctypes.c_int]
+gpio.digitalRead.argtypes = [ctypes.c_int]
+gpio.blink.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int]
+gpio.blink.restype = ctypes.c_int
+
+INPUT = 0
+OUTPUT = 1
+
+
+app = Flask(__name__)
+CORS(app)
 USERS_FILE = 'users.json'
 LIGHTS_FILE = 'lights.json'
 DOORS_FILE = 'doors.json'
@@ -66,10 +80,21 @@ def save_state(file, data):
 # Lights & doors
 def update_light(name, state):
     lights = load_state(LIGHTS_FILE, {
-        "0": False, "1": False, "2": False, "3": False, "4": False
+        "0": False, "1": False, "2": False, "3": False, "4": False,
     })
     if name not in lights:
         return None
+    if name =="0":
+        pin=5
+    if name =="1":
+        pin=6
+    if name =="2":
+        pin=13        
+    if name =="3":
+        pin=19
+    if name =="4":
+        pin=26
+    gpio.digitalWrite(pin,1 if state else 0)
     lights[name] = state
     save_state(LIGHTS_FILE, lights)
     return lights
@@ -78,9 +103,26 @@ def update_door(name, state):
     doors = load_state(DOORS_FILE, {
         "0": False, "1": False, "2": False, "3": False
     })
+    print(doors)
     if name not in doors:
         return None
-    doors[name] = state
+
+
+    if name =="0":
+        pin=2
+    if name =="1":
+        pin=3
+    if name =="2":
+        pin=4        
+    if name =="3":
+        print("LLEGA A 3")
+        pin=22
+    
+    real_state=gpio.digitalRead(pin)
+    print(real_state)
+    
+    doors[name] = bool(real_state)
+    print(doors)
     save_state(DOORS_FILE, doors)
     return doors
 
@@ -128,4 +170,19 @@ def last_picture():
     return 'No hay ninguna foto almacenada', 404
 
 if __name__ == '__main__':
+    #GPIO lights
+    gpio.pinMode(5,OUTPUT)
+    gpio.pinMode(6,OUTPUT)
+    gpio.pinMode(13,OUTPUT)
+    gpio.pinMode(19,OUTPUT)
+    gpio.pinMode(26,OUTPUT)
+
+    #GPIO doors
+    gpio.pinMode(2,INPUT)
+    gpio.pinMode(3,INPUT)
+    gpio.pinMode(4,INPUT)
+    gpio.pinMode(22,INPUT)
+
+
+
     app.run(host='0.0.0.0', port=3000)
