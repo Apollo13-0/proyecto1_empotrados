@@ -1,7 +1,9 @@
 const Login = ({ onLogin }) => {
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
-  
+
+    
+   /*Aqui va la funcion del login para el backend*/  
     const handleSubmit = (e) => {
       e.preventDefault();
       if (username === 'admin' && password === '1234') {
@@ -14,7 +16,7 @@ const Login = ({ onLogin }) => {
     return (
       <div>
         <h2>Iniciar Sesión</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}> 
           <input 
             type="text" 
             value={username} 
