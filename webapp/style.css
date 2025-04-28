@@ -1,72 +1,127 @@
 body {
-    font-family: sans-serif;
-    padding: 20px;
-    background-color: #f5f5f5;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  section {
-    margin-bottom: 30px;
-  }
-  
-  .device {
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .device span {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  button {
-    padding: 10px 15px;
-    font-size: 1em;
-    margin: 0 5px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .btn-on {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .btn-off {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  .indicator {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    margin-left: 10px;
-    border: 2px solid #ccc;
-  }
-  
-  .indicator.on {
-    background-color: red;
-  }
-  
-  .indicator.off {
-    background-color: green;
-  }
-  
-  img {
-    margin-top: 10px;
-    max-width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
+  font-family: sans-serif;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+h1 {
+  color: #333;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+.device {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.device span {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 1em;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-on {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-off {
+  background-color: #f44336;
+  color: white;
+}
+
+.indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-left: 10px;
+  border: 2px solid #ccc;
+}
+
+.indicator.on {
+  background-color: red;
+}
+
+.indicator.off {
+  background-color: green;
+}
+
+img {
+  margin-top: 10px;
+  max-width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* 🔥 ESTO ES SOLO PARA EL LOGIN 🔥 */
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 50px auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.login h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.login form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login input {
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.login button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login button:hover {
+  background-color: #45a049;
+}
+
+.spinner {
+  font-size: 24px;
+  color: #4CAF50;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
