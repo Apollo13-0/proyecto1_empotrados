@@ -1,0 +1,18 @@
+{
+  "ana": {
+    "salt": "da2b0014e3b744ef807e69ad5e491a3e",
+    "hash": "ddda824c3bbeef03a2438bf04198538644c63ea33f50a89cf7ad6203ab54b2f3"
+  },
+  "nacho": {
+    "salt": "3a89d781cb4249f99eb7f14d0b581eea",
+    "hash": "0b7c3d1f7474fc952432e81646ed9094fdbb0b82301e4f90be9f1d34b7da8354"
+  },
+  "sergio": {
+    "salt": "3c8df7b69aaf46acba707d237c00f374",
+    "hash": "45e7920e424d22085e73e44962f76e4af16810cdea185594ceef75f4be1bca8f"
+  },
+  "kevin": {
+    "salt": "d7aa7f85b93a4221955c152a9062b27f",
+    "hash": "65a64fa7894e0de57be5d8f3bb9f987cf502948909cfbf9c2c27944f0932a116"
+  }
+}

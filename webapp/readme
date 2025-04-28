@@ -1,0 +1,4 @@
+1. Inicia un servidor local:
+
+```bash
+make serve
