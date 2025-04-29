@@ -120,7 +120,6 @@ def update_door(name, state):
     if name =="2":
         pin=4        
     if name =="3":
-        print("LLEGA A 3")
         pin=22
     
     real_state=gpio.digitalRead(pin)
@@ -190,4 +189,4 @@ if __name__ == '__main__':
 
 
 
-    app.run(host='0.0.0.0', port=3000)
+    app.run(host='192.168.100.2', port=3000)

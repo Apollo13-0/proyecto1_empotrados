@@ -2,8 +2,8 @@ const SmartHomeApp = () => {
     const luces = [0, 1, 2, 3, 4];
     const puertas = [0, 1, 2, 3];
     const [foto, setFoto] = React.useState(null);
-    const [estadoPuertas, setEstadoPuertas] = React.useState([true, true, true, true]);
-    const URL = 'http://localhost:3000'; 
+    const [estadoPuertas, setEstadoPuertas] = React.useState([true, true, true, true, true]);
+    const URL = 'http://192.168.100.2:3000'; 
   
     const cambiarLuz = (id, estado) => {
       fetch(`${URL}/lights/${id}`, {
